@@ -24,6 +24,6 @@ function thymioMsg(_data) {
 
 app.use(express.static('www'));
 
-console.log("HTTP server running at http://127.0.0.1:3000");
+console.log("PolyMsg HTTP server running at http://127.0.0.1:3000");
 
 

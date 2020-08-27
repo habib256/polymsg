@@ -1,3 +1,6 @@
+
+var socket = io.connect('ws://localhost:3000');
+
 let titre;
 
 function setup() {
