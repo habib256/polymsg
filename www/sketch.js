@@ -1,5 +1,8 @@
+let titre;
+
 function setup() {
-  // put setup code here
+  titre = createElement('h1', 'PolyMsg');
+  titre.position (10, 3);
 }
 
 function draw() {
