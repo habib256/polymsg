@@ -14,7 +14,6 @@ function draw() {
 
 // PING Events
 socket.on('serverIP', getServerIP);
-async function thymioPing(data) {
+async function getServerIP(data) {
     console.log('Ping');
-    await selectedNode.emitEvents({ "ping": null });
 }
