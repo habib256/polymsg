@@ -1,6 +1,3 @@
-
-let ip;
-
 let titre;
 
 
@@ -10,17 +7,23 @@ function preload() {
 }
 
 function setup() {
-  //var socket = io.connect('ws://192.168.43.105:3000');
-  titre = createElement('h1', 'PolyMsg'+"@"+ip);
-  titre.position (10, -20);
+  titre = createElement('h1', 'PolyMsg');
+  titre.position(10, -20);
 }
 
 function draw() {
   // put drawing code here
 }
 
-// PING Events
+// Socketio Events
+
+socket.on('connect', () => {
+  if (socket.connected) { }
+  console.log("Socketio connected to server. Great !");
+}
+});
+
 socket.on('serverIP', getServerIP);
 async function getServerIP(data) {
-    console.log('Ping');
+  console.log('Ping');
 }
