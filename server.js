@@ -1,6 +1,7 @@
 // Basic HTTP Backend Server
 
 // GET LOCAL SERVER IP 
+let serverip;
 'use strict';
 const { networkInterfaces } = require('os');
 const nets = networkInterfaces();
@@ -17,6 +18,12 @@ for (const name of Object.keys(nets)) {
         }
     }
 }
+if (ipresults["wlan0"][0] != null) {
+serverip = ipresults["wlan0"][0];
+}
+if (ipresults["wlp6s0"][0] != null) {
+    serverip = ipresults["wlp6s0"][0];
+    }
 
 var express = require('express');
 var cors = require('cors')
@@ -46,7 +53,7 @@ function showJSON(req, res) {
 
 app.use(express.static('www'));
 
-console.log("PolyMsg HTTP server running at http://127.0.0.1:3000");
+console.log("PolyMsg HTTP server running at http://"+ipresults["wlan0"][0]+":3000");
 console.log(ipresults["wlan0"][0]);
 
 app.get('/', (req, res) => {
