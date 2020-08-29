@@ -5,6 +5,7 @@ let serverip;
 'use strict';
 const { networkInterfaces } = require('os');
 const nets = networkInterfaces();
+//console.log(nets);
 const ipresults = Object.create(null); // or just '{}', an empty object
 for (const name of Object.keys(nets)) {
     for (const net of nets[name]) {
@@ -12,14 +13,14 @@ for (const name of Object.keys(nets)) {
         if (net.family === 'IPv4' && !net.internal) {
             if (!ipresults[name]) {
                 ipresults[name] = [];
+            
             }
 
             ipresults[name].push(net.address);
+            serverip=ipresults[name][0];
         }
     }
 }
-
-console.log(ipresults);
 
 var express = require('express');
 var cors = require('cors')
