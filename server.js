@@ -21,45 +21,39 @@ for (const name of Object.keys(nets)) {
         }
     }
 }
+// WRITE DOWN SERVER IP TO FILE
+fs = require('fs');
+fs.writeFile('www/ip.txt', serverip, function (err) {
+  if (err) return console.log(err);
+  console.log("Backup the server ip : "+serverip+" to ip.txt");
+});
 
+// INITIALIZE EXPRESS HTTP SERVER
 var express = require('express');
 var cors = require('cors')
 var app = express();
 app.use(cors())
 var server = app.listen(3000);
 
-var socket;
-var io = require('socket.io').listen(server);
-
-
-io.sockets.on('connection', newConnection);
-function newConnection(_socket) {
-    socket = _socket;
-    console.log('new connection: ' + socket.id);
-    //socket.on('thymio', thymioMsg);
-}
-
-function thymioMsg(_data) {
-    data = _data;
-    // io.sockets.emit('thymio', data);
-}
 app.get('/net', showJSON);
 function showJSON(req, res) {
     res.send(ipresults);
 }
 
 app.use(express.static('www'));
-
 console.log("PolyMsg HTTP server running at http://"+serverip+":3000");
-//console.log(ipresults["wlan0"][0]);
 
-app.get('/', (req, res) => {
-    res.send('<h1>Hello world</h1>');
-});
+// INITIALIZE SOCKETIO
+var io = require('socket.io').listen(server);
 
-io.on('connection', (socket) => {
-    console.log('a user connected');
-  });
+io.sockets.on('connection', newConnection);
+function newConnection(_socket) {
+    console.log('new connection: ' + _socket.id);
+    //_socket.on('thymio', thymioMsg);
+}
 
-  
+function thymioMsg(_data) {
+    data = _data;
+    // io.sockets.emit('thymio', data);
+}
 
