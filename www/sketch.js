@@ -1,5 +1,5 @@
 let titre;
-
+let data
 
 function preload() {
   //loads in text file as lines of text
@@ -18,12 +18,13 @@ function draw() {
 // Socketio Events
 
 socket.on('connect', () => {
-  if (socket.connected) { }
+  if (socket.connected) { 
   console.log("Socketio connected to server. Great !");
 }
 });
 
-socket.on('serverIP', getServerIP);
-async function getServerIP(data) {
+socket.on('ping', ping);
+async function ping() {
   console.log('Ping');
+  socket.emit('pong','Pong');
 }

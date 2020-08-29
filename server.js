@@ -38,8 +38,8 @@ var server = app.listen(3000);
 app.get('/net', showJSON);
 function showJSON(req, res) {
     res.send(ipresults);
-    io.sockets.emit('serverIP', serverip);
-    console.log("Emit ip from server");
+    io.sockets.emit('ping', serverip);
+    console.log("Emit ping from server");
 }
 
 app.use(express.static('www'));
@@ -52,4 +52,9 @@ io.sockets.on('connection', newConnection);
 function newConnection(_socket) {
     console.log('new connection: ' + _socket.id);
 }
+io.sockets.on('pong', pong);
+function pong(_socket) {
+    console.log('Pong');
+}
+
 
