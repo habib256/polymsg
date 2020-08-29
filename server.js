@@ -47,7 +47,7 @@ function showJSON(req, res) {
 app.use(express.static('www'));
 
 console.log("PolyMsg HTTP server running at http://127.0.0.1:3000");
-//console.log(ipresults["wlp6s0"][0]);
+console.log(ipresults[0][0]);
 
 app.get('/', (req, res) => {
     res.send('<h1>Hello world</h1>');
