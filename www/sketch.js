@@ -6,7 +6,7 @@ let titre;
 
 function preload() {
   //loads in text file as lines of text
-  ip = loadStrings('ip.txt');
+  //ip = loadStrings('ip.js);
 }
 
 function setup() {
