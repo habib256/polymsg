@@ -1,5 +1,5 @@
 
-var socket = io.connect('ws://localhost:3000');
+var socket = io.connect('ws://192.168.43.105:3000');
 
 let titre;
 
@@ -13,7 +13,7 @@ function draw() {
 }
 
 // PING Events
-socket.on('ping', thymioPing);
+socket.on('serverIP', getServerIP);
 async function thymioPing(data) {
     console.log('Ping');
     await selectedNode.emitEvents({ "ping": null });
