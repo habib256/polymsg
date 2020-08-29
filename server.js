@@ -23,9 +23,9 @@ for (const name of Object.keys(nets)) {
 }
 // WRITE DOWN SERVER IP TO FILE
 fs = require('fs');
-fs.writeFile('www/ip.txt', serverip, function (err) {
+fs.writeFile('www/ip.js', "socket = io.connect('ws://"+serverip+":3000')", function (err) {
   if (err) return console.log(err);
-  console.log("Backup the server ip : "+serverip+" to ip.txt");
+  console.log("Prepare ip.js for socket.io connection: "+serverip);
 });
 
 // INITIALIZE EXPRESS HTTP SERVER
@@ -38,6 +38,8 @@ var server = app.listen(3000);
 app.get('/net', showJSON);
 function showJSON(req, res) {
     res.send(ipresults);
+    io.sockets.emit('serverIP', serverip);
+    console.log("Emit ip from server");
 }
 
 app.use(express.static('www'));
@@ -49,11 +51,5 @@ var io = require('socket.io').listen(server);
 io.sockets.on('connection', newConnection);
 function newConnection(_socket) {
     console.log('new connection: ' + _socket.id);
-    //_socket.on('thymio', thymioMsg);
-}
-
-function thymioMsg(_data) {
-    data = _data;
-    // io.sockets.emit('thymio', data);
 }
 
