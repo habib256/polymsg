@@ -1,1 +1,1 @@
-socket = io.connect('ws://192.168.43.53:3000')
+socket = io.connect('ws://192.168.43.105:3000')
