@@ -4,13 +4,14 @@ let data
 function preload() {
   //loads in text file as lines of text
   //ip = loadStrings('ip.js);
+  data = loadJSON("http://192.168.43.53:3000/data");
 }
 
 function setup() {
-  titre = createElement('h1', 'PolyMsg');
+  titre = createElement('h1', data.titre);
   titre.position(10, -20);
-  let inp = createInput('');
-  inp.input(myInputEvent);
+  titre = createElement('h2', data.content);
+  titre.position(10, 80);
 }
 
 function draw() {
