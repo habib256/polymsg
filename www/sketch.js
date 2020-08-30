@@ -9,6 +9,8 @@ function preload() {
 function setup() {
   titre = createElement('h1', 'PolyMsg');
   titre.position(10, -20);
+  let inp = createInput('');
+  inp.input(myInputEvent);
 }
 
 function draw() {
@@ -26,5 +28,9 @@ socket.on('connect', () => {
 socket.on('ping', ping);
 async function ping() {
   console.log('Ping');
-  socket.emit('pong','Pong');
+  socket.emit('pong','pong');
+}
+//Input Events
+function myInputEvent() {
+  console.log('you are typing: ', this.value());
 }
