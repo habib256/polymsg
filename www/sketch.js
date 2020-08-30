@@ -1,17 +1,20 @@
+let datas = [];
 let titre;
-let data
 
 function preload() {
   //loads in text file as lines of text
-  //ip = loadStrings('ip.js);
-  data = loadJSON("http://192.168.43.53:3000/data");
+ // serverip = loadStrings('ip.txt');
+  datas = loadJSON("http://"+serverip+":3000/data");
+  
 }
 
 function setup() {
-  titre = createElement('h1', data.titre);
+  
+  titre = createElement('h1', datas[0].titre);
   titre.position(10, -20);
-  titre = createElement('h2', data.content);
+  titre = createElement('h2', datas[0].content);
   titre.position(10, 80);
+  
 }
 
 function draw() {
@@ -22,7 +25,7 @@ function draw() {
 
 socket.on('connect', () => {
   if (socket.connected) { 
-  console.log("Socketio connected to server. Great !");
+  console.log("Socketio connected to server: "+serverip+" Great !");
 }
 });
 

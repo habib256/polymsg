@@ -1,6 +1,6 @@
 // Basic HTTP Backend Server
 
-var data = { "titre": "Bienvenue sur PolyMsg", "content": "PolyMsg va vous aider à diffuser des messages facilement", "P5Image": 9 }
+var data = [{ "titre": "Bienvenue sur PolyMsg", "content": "PolyMsg va vous aider à diffuser des messages facilement", "P5Image": 9 }];
 
 
 // GET LOCAL SERVER IP 
@@ -26,7 +26,7 @@ for (const name of Object.keys(nets)) {
 }
 // WRITE DOWN SERVER IP TO FILE
 fs = require('fs');
-fs.writeFile('www/ip.js', "socket = io.connect('ws://" + serverip + ":3000')", function (err) {
+fs.writeFile('www/ip.js', "socket = io.connect('ws://" + serverip + ":3000');"+"\n"+"let serverip ='"+serverip+"';"+"\n", function (err) {
     if (err) return console.log(err);
     console.log("Prepare ip.js for socket.io connection: " + serverip);
 });
