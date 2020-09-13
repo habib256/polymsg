@@ -2,10 +2,12 @@ let datas;
 let mode;
 let password;
 let logged = false;
+let modifing = false;
 let stop;
 let paragraphs=[];
 let buttons_modif=[];
 let buttons_suppr=[];
+let buttonNewMsg;
 
 function preload() {
   //loads in text file as lines of text
@@ -32,14 +34,21 @@ function draw() {
   // put drawing code here
   if (logged) {
     removeElements();
-    stop = false;
-    for (let i = 0; !stop; i++) {
-      if (datas[i] == undefined) {
-        stop = true;
-      } else {
-        paragraphs.push(createP(datas[i].titre+ ":\t\t\t"+datas[i].content));
-        buttons_modif.push(createButton('modifier'));
-        buttons_suppr.push( createButton('supprimer'));
+    if (modifing) {
+      
+
+    } else {
+      stop = false;
+      buttonNewMsg = createButton('Ajouter un nouveau message');
+      buttonNewMsg.mousePressed(newMessage);
+      for (let i = 0; !stop; i++) {
+        if (datas[i] == undefined) {
+          stop = true;
+        } else {
+          paragraphs.push(createP(datas[i].titre + ":\t\t\t" + datas[i].content));
+          buttons_modif.push(createButton('modifier'));
+          buttons_suppr.push(createButton('supprimer'));
+        }
       }
     }
   }
@@ -50,6 +59,11 @@ function myInputEvent() {
   console.log('you are typing: ', this.value());
   password = this.value();
   //console.log(this);
+}
+
+function newMessage() {
+  console.log("Modifications !!");
+  modifing = true;
 }
 
 function checkPassword() {
