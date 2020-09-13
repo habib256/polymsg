@@ -3,6 +3,9 @@ let mode;
 let password;
 let logged = false;
 let stop;
+let paragraphs=[];
+let buttons_modif=[];
+let buttons_suppr=[];
 
 function preload() {
   //loads in text file as lines of text
@@ -11,6 +14,7 @@ function preload() {
 }
 
 function setup() {
+  noCanvas();
   let titre = createElement('h1', 'PolyMsg<br>Administration');
   titre.position(10, -20);
   let inputPasswrdTxt = createElement('h1', 'password :');
@@ -33,9 +37,10 @@ function draw() {
       if (datas[i] == undefined) {
         stop = true;
       } else {
-        createP(datas[i].titre+ ":\t\t\t"+datas[i].content);
+        paragraphs.push(createP(datas[i].titre+ ":\t\t\t"+datas[i].content));
+        buttons_modif.push(createButton('modifier'));
+        buttons_suppr.push( createButton('supprimer'));
       }
-
     }
   }
 }

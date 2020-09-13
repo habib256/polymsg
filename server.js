@@ -5,6 +5,8 @@ var data = [];
 data.push({ "titre": "Bienvenue sur PolyMsg", "content": "PolyMsg va vous aider à diffuser des messages facilement", "P5Image": 9 });
 data.push({ "titre": "Grand titre", "content": "Ceci est un contenu de test pour vérifier que tout cela fonctionne", "P5Image": 9 });
 data.push({ "titre": "Exemple de titre n°2", "content": "Incroyable ! Je n'ai quasiment jamais parlé de fourmis sur ce blog ! Réparons cette atroce injustice sur le champ.", "P5Image": 9 });
+data.push({ "titre": "Un 4ème exemple de texte pour plus d'information", "content": "PolyMsg va vous aider à diffuser des messages facilement","P5Image": 9 });
+data.push({ "titre": "Un 5ème exemple de texte ", "content": "PolyMsg va vous aider à diffuser des messages facilement","P5Image": 9 });
 
 
 // GET LOCAL SERVER IP 

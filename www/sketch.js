@@ -1,6 +1,6 @@
 let datas = [];
 let titre;
-let temps = 240;
+let temps = 300;
 let content;
 let counter;
 
@@ -26,7 +26,7 @@ function draw() {
   }
   removeElements();
   // put drawing code here
-  titre = createElement('h1', datas[counter].titre);
+  titre = createElement('h1',datas[counter].titre);
   titre.position(10, -20);
   content = createElement('h2', datas[counter].content);
   content.position(10, 80);
