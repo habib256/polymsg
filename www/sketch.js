@@ -1,5 +1,7 @@
 let datas = [];
 let titre;
+let content;
+let counter;
 
 function preload() {
   //loads in text file as lines of text
@@ -9,16 +11,24 @@ function preload() {
 }
 
 function setup() {
-  
-  titre = createElement('h1', datas[0].titre);
-  titre.position(10, -20);
-  titre = createElement('h2', datas[0].content);
-  titre.position(10, 80);
+  counter = 0;
   
 }
 
 function draw() {
+  //console.log(datas.length)
+  if (frameCount % 120 == 0) {
+    counter = counter + 1;
+    if (counter > 2){
+      counter =0;
+    }
+  }
+  removeElements();
   // put drawing code here
+  titre = createElement('h1', datas[counter].titre);
+  titre.position(10, -20);
+  content = createElement('h2', datas[counter].content);
+  content.position(10, 80);
 }
 
 // Socketio Events

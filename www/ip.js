@@ -1,2 +1,2 @@
-socket = io.connect('ws://192.168.43.53:3000');
-let serverip ='192.168.43.53';
+socket = io.connect('ws://192.168.2.4:3000');
+let serverip ='192.168.2.4';
