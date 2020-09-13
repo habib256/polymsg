@@ -1,5 +1,6 @@
 let datas = [];
 let titre;
+let temps = 240;
 let content;
 let counter;
 
@@ -17,9 +18,9 @@ function setup() {
 
 function draw() {
   //console.log(datas.length)
-  if (frameCount % 120 == 0) {
+  if (frameCount % temps == 0) {
     counter = counter + 1;
-    if (counter > 2){
+    if (datas[counter] == undefined){
       counter =0;
     }
   }
