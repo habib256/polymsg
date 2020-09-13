@@ -1,10 +1,10 @@
 // Basic HTTP Backend Server
 
-var data = [
-    { "titre": "Bienvenue sur PolyMsg", "content": "PolyMsg va vous aider à diffuser des messages facilement", "P5Image": 9 },
-    { "titre": "Grand titre", "content": "Ceci est un contenu de test pour vérifier que tout cela fonctionne", "P5Image": 9 },
-    { "titre": "Exemple de titre n°2", "content": "Incroyable ! Je n'ai quasiment jamais parlé de fourmis sur ce blog ! Réparons cette atroce injustice sur le champ. Dans ce billet, je vous propose de découvrir dix petites histoires incroyables au sujet de ces fascinants insectes. Je vous épargne les classiques une fourmi peut porter 50 fois son poids et la masse de fourmis sur Terre équivaut à celle des humains :) A la place, et entre autres histoires insolites : symbiose, esclavage, philosophie, et vampirisme ! Bonne lecture :)", "P5Image": 9 }
-];
+var data = [];
+
+data.push({ "titre": "Bienvenue sur PolyMsg", "content": "PolyMsg va vous aider à diffuser des messages facilement", "P5Image": 9 });
+data.push({ "titre": "Grand titre", "content": "Ceci est un contenu de test pour vérifier que tout cela fonctionne", "P5Image": 9 });
+data.push({ "titre": "Exemple de titre n°2", "content": "Incroyable ! Je n'ai quasiment jamais parlé de fourmis sur ce blog ! Réparons cette atroce injustice sur le champ.", "P5Image": 9 });
 
 
 // GET LOCAL SERVER IP 
@@ -45,7 +45,7 @@ var server = app.listen(3000);
 app.get('/data', showJSON);
 function showJSON(req, res) {
     res.send(data);
-   // io.sockets.emit('ping', serverip);
+    io.sockets.emit('ping', serverip);
     //console.log("Emit ping from server");
 }
 
