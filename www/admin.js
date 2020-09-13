@@ -8,6 +8,9 @@ let paragraphs=[];
 let buttons_modif=[];
 let buttons_suppr=[];
 let buttonNewMsg;
+let txtInput;
+let contentInput;
+let buttonAppliquer;
 
 function preload() {
   //loads in text file as lines of text
@@ -16,7 +19,17 @@ function preload() {
 }
 
 function setup() {
+  drawLog();
+}
+
+function draw() {
+  // put drawing code here
+
+}
+
+function drawLog() {
   noCanvas();
+  removeElements();
   let titre = createElement('h1', 'PolyMsg<br>Administration');
   titre.position(10, -20);
   let inputPasswrdTxt = createElement('h1', 'password :');
@@ -30,31 +43,48 @@ function setup() {
   button.mousePressed(checkPassword);
 }
 
-function draw() {
-  // put drawing code here
-  if (logged) {
-    removeElements();
-    if (modifing) {
-      
-
+function drawList() { 
+  removeElements();
+  stop = false;
+  buttonNewMsg = createButton('Ajouter un nouveau message');
+  buttonNewMsg.mousePressed(newMessage);
+  for (let i = 0; !stop; i++) {
+    if (datas[i] == undefined) {
+      stop = true;
     } else {
-      stop = false;
-      buttonNewMsg = createButton('Ajouter un nouveau message');
-      buttonNewMsg.mousePressed(newMessage);
-      for (let i = 0; !stop; i++) {
-        if (datas[i] == undefined) {
-          stop = true;
-        } else {
-          paragraphs.push(createP(datas[i].titre + ":\t\t\t" + datas[i].content));
-          buttons_modif.push(createButton('modifier'));
-          buttons_suppr.push(createButton('supprimer'));
-        }
-      }
+      paragraphs.push(createP(datas[i].titre + ":\t\t\t" + datas[i].content));
+      buttons_modif.push(createButton('modifier'));
+      buttons_suppr.push(createButton('supprimer'));
     }
   }
 }
 
+function drawModif() {    
+  removeElements();
+  txtInput = createInput('Text');
+  txtInput.input(mytxtInputEvent);
+  contentInput = createInput('Content');
+  contentInput.input(mycontentInputEvent);
+  buttonAppliquer = createButton('Appliquer');
+  buttonAppliquer.input(myAppliquerEvent);
+}
+
+
 //Input Events
+function myAppliquerEvent() {
+
+}
+
+function mytxtInputEvent(){
+  console.log('you are typing: ', this.value());
+  password = this.value();
+}
+
+function mycontentInputEvent(){
+  console.log('you are typing: ', this.value());
+  password = this.value();
+}
+
 function myInputEvent() {
   console.log('you are typing: ', this.value());
   password = this.value();
@@ -64,16 +94,19 @@ function myInputEvent() {
 function newMessage() {
   console.log("Modifications !!");
   modifing = true;
+  drawModif();
 }
 
 function checkPassword() {
   if (password == "password") {
     console.log("YES OK !!! YOURE THE BOOSS");
     logged = true;
+    drawList();
   }
   // Always true :-)
 
   logged = true;
+  drawList();
 }
 
 // Socketio Events
